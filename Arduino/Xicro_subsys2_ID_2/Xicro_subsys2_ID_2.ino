@@ -50,12 +50,7 @@
 #define ROTATE_L     6
 #define SHOULDER_L   7
 #define OMOPLATE_L   8
-#define NECK         9
-#define ROTHEAD      10
-#define JAW          11
-#define EYE_X        12
-#define EYE_Y        13
-#define NUM_SERVOS   14
+#define NUM_SERVOS   9
 
 struct SmoothServo {
   Servo servo;                 // Arduino Servo object (handles PWM)
@@ -82,11 +77,6 @@ SmoothServo servos[NUM_SERVOS] = {
   {Servo(), 0, 0,    90,     80, 135, 0, 1,  9,  false},   // ROTATE_L: Left arm rotation
   {Servo(), 0, 0,    90,     90, 120, 0, 1, 10,  false},   // SHOULDER_L: Left shoulder
   {Servo(), 0, 0,     5,      0,  20, 0, 1, 11,  false},   // OMOPLATE_L: Left omoplate
-  {Servo(), 0, 0,   110,     25, 170, 0, 2, 12,  false},   // NECK: Neck
-  {Servo(), 0, 0,    90,     50, 130, 0, 1, 13,  false},   // ROTHEAD: Head rotation
-  {Servo(), 0, 0,     9,      9,  20, 0,10, 26,  false},   // JAW: Jaw
-  {Servo(), 0, 0,    80,     70, 107, 0, 2, 22,  false},   // EYE_X: Eyes horizontal axis
-  {Servo(), 0, 0,    80,     60, 100, 0, 2, 24,  false}    // EYE_Y: Eyes vertical axis
 };
 
 Xicro xicro;
@@ -125,11 +115,6 @@ void loop() {
     xicro.Subscription_rotate_L.message.data,
     xicro.Subscription_shoulder_L.message.data,
     xicro.Subscription_omoplate_L.message.data,
-    xicro.Subscription_neck.message.data,
-    xicro.Subscription_rothead.message.data,
-    xicro.Subscription_jaw.message.data,
-    xicro.Subscription_eye_x.message.data,
-    xicro.Subscription_eye_y.message.data
   };
 
   for (int i = 0; i < NUM_SERVOS; i++) {

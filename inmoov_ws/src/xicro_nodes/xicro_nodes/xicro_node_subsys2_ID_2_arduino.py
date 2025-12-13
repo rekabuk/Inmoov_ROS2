@@ -533,19 +533,6 @@ class Subscriber_node(Node):
         self.callback_shoulder_L
         self.subscription_omoplate_L = self.create_subscription(Int16,'omoplate_L',self.callback_omoplate_L,10)
         self.callback_omoplate_L
-        self.subscription_neck = self.create_subscription(Int16,'neck',self.callback_neck,10)
-        self.callback_neck
-        self.subscription_rothead = self.create_subscription(Int16,'rothead',self.callback_rothead,10)
-        self.callback_rothead
-        self.subscription_jaw = self.create_subscription(Int16,'jaw',self.callback_jaw,10)
-        self.callback_jaw
-        self.subscription_eye_x = self.create_subscription(Int16,'eye_x',self.callback_eye_x,10)
-        self.callback_eye_x
-        self.subscription_eye_y = self.create_subscription(Int16,'eye_y',self.callback_eye_y,10)
-        self.callback_eye_y
-
-
-
 
     # gen callback sub
     # gen callback Sub
@@ -681,84 +668,6 @@ class Subscriber_node(Node):
         self.xicro_instruction._To_Send()
 
         return 1
-
-
-
-    def callback_neck(self,msg):
-        self.xicro_instruction._Reset_Buff()
-        self.xicro_instruction._Reset_CRC()
-        self.xicro_instruction._SendStart()
-        self.xicro_instruction._SendSignature(2,2)
-        self.xicro_instruction._SendIdtopic(10)
-        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()
-        self.xicro_instruction._SendCRC()
-        self.xicro_instruction._To_Send()
-
-        return 1
-
-
-
-    def callback_rothead(self,msg):
-        self.xicro_instruction._Reset_Buff()
-        self.xicro_instruction._Reset_CRC()
-        self.xicro_instruction._SendStart()
-        self.xicro_instruction._SendSignature(2,2)
-        self.xicro_instruction._SendIdtopic(11)
-        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()
-        self.xicro_instruction._SendCRC()
-        self.xicro_instruction._To_Send()
-
-        return 1
-
-
-
-    def callback_jaw(self,msg):
-        self.xicro_instruction._Reset_Buff()
-        self.xicro_instruction._Reset_CRC()
-        self.xicro_instruction._SendStart()
-        self.xicro_instruction._SendSignature(2,2)
-        self.xicro_instruction._SendIdtopic(12)
-        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()
-        self.xicro_instruction._SendCRC()
-        self.xicro_instruction._To_Send()
-
-        return 1
-
-
-
-    def callback_eye_x(self,msg):
-        self.xicro_instruction._Reset_Buff()
-        self.xicro_instruction._Reset_CRC()
-        self.xicro_instruction._SendStart()
-        self.xicro_instruction._SendSignature(2,2)
-        self.xicro_instruction._SendIdtopic(13)
-        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()
-        self.xicro_instruction._SendCRC()
-        self.xicro_instruction._To_Send()
-
-        return 1
-
-
-
-    def callback_eye_y(self,msg):
-        self.xicro_instruction._Reset_Buff()
-        self.xicro_instruction._Reset_CRC()
-        self.xicro_instruction._SendStart()
-        self.xicro_instruction._SendSignature(2,2)
-        self.xicro_instruction._SendIdtopic(14)
-        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()
-        self.xicro_instruction._SendCRC()
-        self.xicro_instruction._To_Send()
-
-        return 1
-
-
-
 
 
 class ThreadThree(Node):

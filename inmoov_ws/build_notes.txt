@@ -44,3 +44,14 @@ ros2 launch foxglove_bridge foxglove_bridge_launch.xml port:=8765
 
 #Start test tool
 /home/andrew/inmoov_ws/tools/cli_tool.py
+
+
+
+
+#subsystem2 remove
+    [10, "neck", "std_msgs/Int16.msg"],
+    [11, "rothead", "std_msgs/Int16.msg"],
+    [12, "jaw", "std_msgs/Int16.msg"],
+    [13, "eye_x", "std_msgs/Int16.msg"],
+    [14, "eye_y", "std_msgs/Int16.msg"]
+
