@@ -1,0 +1,46 @@
+
+
+#Change python to python3
+python -c "import serial; print('pyserial version:', serial.__version__)"
+
+
+
+
+CATKIN_INSTALL_INTO_PREFIX_ROOT - just build again
+
+
+arduino-ide_2.2.6_Linux_64bit - version is 
+
+
+System 1 = Right = ttyACM2
+
+
+/home/andrew/inmoov_ws/src/Xicro/xicro_pkg/config/setup_xicro_subsystem1.yaml
+ros2 run xicro_pkg generate_library.py -mcu_type arduino
+serial_port: "usb-Arduino_Srl_Arduino_Mega_95536333830351E0A261-if00"  # for Serial UART subsystem 1"
+ros2 run xicro_pkg generate_library.py -mcu_type arduino
+ 
+/home/andrew/inmoov_ws/src/Xicro/xicro_pkg/config/setup_xicro_subsystem2.yaml
+serial_port: "usb-Arduino_Srl_Arduino_Mega_95536333830351D00131-if00"  # for Serial UART subsystem 1"
+ros2 run xicro_pkg generate_library.py -mcu_type arduino
+
+
+# Wrong ports are set here, I have no idea how.
+./install/xicro_nodes/lib/python3.12/site-packages/xicro_nodes/xicro_node_subsys1_ID_1_arduino.py
+./install/xicro_nodes/lib/python3.12/site-packages/xicro_nodes/xicro_node_subsys2_ID_2_arduino.py
+
+
+
+--Launch setup
+cd inmoov_ws
+source ~/inmoov_ws/install/setup.bash
+
+#Run nodes
+ros2 launch xicro_nodes xicro_nodes.launch.py
+
+
+#Start Firefox
+ros2 launch foxglove_bridge foxglove_bridge_launch.xml port:=8765
+
+#Start test tool
+/home/andrew/inmoov_ws/tools/cli_tool.py

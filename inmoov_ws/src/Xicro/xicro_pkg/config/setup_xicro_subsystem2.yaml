@@ -4,7 +4,7 @@ microcontroller:
   generate_library_Path: "Arduino"  # path for generate library
   connection:
     type: "UART"   # ["UART","UDP"] 
-    serial_port: "/dev/serial/by-id/usb-Arduino__www.arduino.cc__0042_55332333230351803271-if00"  # for Serial UART Subsystem 2"
+    serial_port: "/dev/serial/by-id/usb-Arduino_Srl_Arduino_Mega_95536333830351E0A261-if00"  # for Serial UART Subsystem 2"
     baudrate: 57620  # for UART
     ip_address_mcu: ""  # for UDP example "192.168.1.xx"
     udp_port_mcu: 0  # for UDP

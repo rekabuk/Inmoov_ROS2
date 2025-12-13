@@ -23,7 +23,30 @@ from rclpy.executors import MultiThreadedExecutor
 import numpy as np
 import serial
 # gen Import interfaces
-# gen import msgfrom std_msgs.msg import Int16# gen import srv client# gen import srv server# gen import action client# gen import action serverimport struct
+
+# gen import msg
+from std_msgs.msg import Int16
+
+
+# gen import srv client
+
+
+
+
+# gen import srv server
+
+
+
+
+# gen import action client
+
+
+
+
+# gen import action server
+
+
+import struct
 import time
 import multiprocessing as mp
 import argparse
@@ -98,17 +121,25 @@ def setup_var_protocol():
 
 
 
-def setup_srv_protocol():    return [],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]
+def setup_srv_protocol():
 
-def setup_srv_server_protocol():    return [],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]
+    return [],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]
+
+def setup_srv_server_protocol():
+
+    return [],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]
 
 
 
-def setup_action_client_protocol():    return [],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]
+def setup_action_client_protocol():
+
+    return [],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]
 
 
 
-def setup_action_server_protocol():    return [],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]
+def setup_action_server_protocol():
+
+    return [],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]
 
 def create_N_topic(self,name,interfaces):
     try:
@@ -481,23 +512,253 @@ class Subscriber_node(Node):
         time.sleep(1)
 
         # gen sub
-        #gen        self.subscription_thumb_finger_L = self.create_subscription(Int16,'thumb_finger_L',self.callback_thumb_finger_L,10)        self.callback_thumb_finger_L        self.subscription_index_finger_L = self.create_subscription(Int16,'index_finger_L',self.callback_index_finger_L,10)        self.callback_index_finger_L        self.subscription_middle_finger_L = self.create_subscription(Int16,'middle_finger_L',self.callback_middle_finger_L,10)        self.callback_middle_finger_L        self.subscription_ring_finger_L = self.create_subscription(Int16,'ring_finger_L',self.callback_ring_finger_L,10)        self.callback_ring_finger_L        self.subscription_pinky_finger_L = self.create_subscription(Int16,'pinky_finger_L',self.callback_pinky_finger_L,10)        self.callback_pinky_finger_L        self.subscription_bicep_L = self.create_subscription(Int16,'bicep_L',self.callback_bicep_L,10)        self.callback_bicep_L        self.subscription_rotate_L = self.create_subscription(Int16,'rotate_L',self.callback_rotate_L,10)        self.callback_rotate_L        self.subscription_shoulder_L = self.create_subscription(Int16,'shoulder_L',self.callback_shoulder_L,10)        self.callback_shoulder_L        self.subscription_omoplate_L = self.create_subscription(Int16,'omoplate_L',self.callback_omoplate_L,10)        self.callback_omoplate_L        self.subscription_neck = self.create_subscription(Int16,'neck',self.callback_neck,10)        self.callback_neck        self.subscription_rothead = self.create_subscription(Int16,'rothead',self.callback_rothead,10)        self.callback_rothead        self.subscription_jaw = self.create_subscription(Int16,'jaw',self.callback_jaw,10)        self.callback_jaw        self.subscription_eye_x = self.create_subscription(Int16,'eye_x',self.callback_eye_x,10)        self.callback_eye_x        self.subscription_eye_y = self.create_subscription(Int16,'eye_y',self.callback_eye_y,10)        self.callback_eye_y
+
+
+        #gen
+        self.subscription_thumb_finger_L = self.create_subscription(Int16,'thumb_finger_L',self.callback_thumb_finger_L,10)
+        self.callback_thumb_finger_L
+        self.subscription_index_finger_L = self.create_subscription(Int16,'index_finger_L',self.callback_index_finger_L,10)
+        self.callback_index_finger_L
+        self.subscription_middle_finger_L = self.create_subscription(Int16,'middle_finger_L',self.callback_middle_finger_L,10)
+        self.callback_middle_finger_L
+        self.subscription_ring_finger_L = self.create_subscription(Int16,'ring_finger_L',self.callback_ring_finger_L,10)
+        self.callback_ring_finger_L
+        self.subscription_pinky_finger_L = self.create_subscription(Int16,'pinky_finger_L',self.callback_pinky_finger_L,10)
+        self.callback_pinky_finger_L
+        self.subscription_bicep_L = self.create_subscription(Int16,'bicep_L',self.callback_bicep_L,10)
+        self.callback_bicep_L
+        self.subscription_rotate_L = self.create_subscription(Int16,'rotate_L',self.callback_rotate_L,10)
+        self.callback_rotate_L
+        self.subscription_shoulder_L = self.create_subscription(Int16,'shoulder_L',self.callback_shoulder_L,10)
+        self.callback_shoulder_L
+        self.subscription_omoplate_L = self.create_subscription(Int16,'omoplate_L',self.callback_omoplate_L,10)
+        self.callback_omoplate_L
+        self.subscription_neck = self.create_subscription(Int16,'neck',self.callback_neck,10)
+        self.callback_neck
+        self.subscription_rothead = self.create_subscription(Int16,'rothead',self.callback_rothead,10)
+        self.callback_rothead
+        self.subscription_jaw = self.create_subscription(Int16,'jaw',self.callback_jaw,10)
+        self.callback_jaw
+        self.subscription_eye_x = self.create_subscription(Int16,'eye_x',self.callback_eye_x,10)
+        self.callback_eye_x
+        self.subscription_eye_y = self.create_subscription(Int16,'eye_y',self.callback_eye_y,10)
+        self.callback_eye_y
+
+
+
+
     # gen callback sub
-    # gen callback Sub    def callback_thumb_finger_L(self,msg):        self.xicro_instruction._Reset_Buff()        self.xicro_instruction._Reset_CRC()        self.xicro_instruction._SendStart()        self.xicro_instruction._SendSignature(2,2)        self.xicro_instruction._SendIdtopic(1)        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()        self.xicro_instruction._SendCRC()        self.xicro_instruction._To_Send()        return 1    def callback_index_finger_L(self,msg):        self.xicro_instruction._Reset_Buff()        self.xicro_instruction._Reset_CRC()        self.xicro_instruction._SendStart()        self.xicro_instruction._SendSignature(2,2)        self.xicro_instruction._SendIdtopic(2)        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()        self.xicro_instruction._SendCRC()        self.xicro_instruction._To_Send()        return 1    def callback_middle_finger_L(self,msg):        self.xicro_instruction._Reset_Buff()        self.xicro_instruction._Reset_CRC()        self.xicro_instruction._SendStart()        self.xicro_instruction._SendSignature(2,2)        self.xicro_instruction._SendIdtopic(3)        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()        self.xicro_instruction._SendCRC()        self.xicro_instruction._To_Send()        return 1    def callback_ring_finger_L(self,msg):        self.xicro_instruction._Reset_Buff()        self.xicro_instruction._Reset_CRC()        self.xicro_instruction._SendStart()        self.xicro_instruction._SendSignature(2,2)        self.xicro_instruction._SendIdtopic(4)        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()        self.xicro_instruction._SendCRC()        self.xicro_instruction._To_Send()        return 1    def callback_pinky_finger_L(self,msg):        self.xicro_instruction._Reset_Buff()        self.xicro_instruction._Reset_CRC()        self.xicro_instruction._SendStart()        self.xicro_instruction._SendSignature(2,2)        self.xicro_instruction._SendIdtopic(5)        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()        self.xicro_instruction._SendCRC()        self.xicro_instruction._To_Send()        return 1    def callback_bicep_L(self,msg):        self.xicro_instruction._Reset_Buff()        self.xicro_instruction._Reset_CRC()        self.xicro_instruction._SendStart()        self.xicro_instruction._SendSignature(2,2)        self.xicro_instruction._SendIdtopic(6)        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()        self.xicro_instruction._SendCRC()        self.xicro_instruction._To_Send()        return 1    def callback_rotate_L(self,msg):        self.xicro_instruction._Reset_Buff()        self.xicro_instruction._Reset_CRC()        self.xicro_instruction._SendStart()        self.xicro_instruction._SendSignature(2,2)        self.xicro_instruction._SendIdtopic(7)        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()        self.xicro_instruction._SendCRC()        self.xicro_instruction._To_Send()        return 1    def callback_shoulder_L(self,msg):        self.xicro_instruction._Reset_Buff()        self.xicro_instruction._Reset_CRC()        self.xicro_instruction._SendStart()        self.xicro_instruction._SendSignature(2,2)        self.xicro_instruction._SendIdtopic(8)        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()        self.xicro_instruction._SendCRC()        self.xicro_instruction._To_Send()        return 1    def callback_omoplate_L(self,msg):        self.xicro_instruction._Reset_Buff()        self.xicro_instruction._Reset_CRC()        self.xicro_instruction._SendStart()        self.xicro_instruction._SendSignature(2,2)        self.xicro_instruction._SendIdtopic(9)        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()        self.xicro_instruction._SendCRC()        self.xicro_instruction._To_Send()        return 1    def callback_neck(self,msg):        self.xicro_instruction._Reset_Buff()        self.xicro_instruction._Reset_CRC()        self.xicro_instruction._SendStart()        self.xicro_instruction._SendSignature(2,2)        self.xicro_instruction._SendIdtopic(10)        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()        self.xicro_instruction._SendCRC()        self.xicro_instruction._To_Send()        return 1    def callback_rothead(self,msg):        self.xicro_instruction._Reset_Buff()        self.xicro_instruction._Reset_CRC()        self.xicro_instruction._SendStart()        self.xicro_instruction._SendSignature(2,2)        self.xicro_instruction._SendIdtopic(11)        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()        self.xicro_instruction._SendCRC()        self.xicro_instruction._To_Send()        return 1    def callback_jaw(self,msg):        self.xicro_instruction._Reset_Buff()        self.xicro_instruction._Reset_CRC()        self.xicro_instruction._SendStart()        self.xicro_instruction._SendSignature(2,2)        self.xicro_instruction._SendIdtopic(12)        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()        self.xicro_instruction._SendCRC()        self.xicro_instruction._To_Send()        return 1    def callback_eye_x(self,msg):        self.xicro_instruction._Reset_Buff()        self.xicro_instruction._Reset_CRC()        self.xicro_instruction._SendStart()        self.xicro_instruction._SendSignature(2,2)        self.xicro_instruction._SendIdtopic(13)        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()        self.xicro_instruction._SendCRC()        self.xicro_instruction._To_Send()        return 1    def callback_eye_y(self,msg):        self.xicro_instruction._Reset_Buff()        self.xicro_instruction._Reset_CRC()        self.xicro_instruction._SendStart()        self.xicro_instruction._SendSignature(2,2)        self.xicro_instruction._SendIdtopic(14)        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()        self.xicro_instruction._SendCRC()        self.xicro_instruction._To_Send()        return 1
+    # gen callback Sub
+    def callback_thumb_finger_L(self,msg):
+        self.xicro_instruction._Reset_Buff()
+        self.xicro_instruction._Reset_CRC()
+        self.xicro_instruction._SendStart()
+        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendIdtopic(1)
+        self.xicro_instruction._SendInt16(msg.data,1)
+        self.xicro_instruction._SendStop()
+        self.xicro_instruction._SendCRC()
+        self.xicro_instruction._To_Send()
+
+        return 1
+
+
+
+    def callback_index_finger_L(self,msg):
+        self.xicro_instruction._Reset_Buff()
+        self.xicro_instruction._Reset_CRC()
+        self.xicro_instruction._SendStart()
+        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendIdtopic(2)
+        self.xicro_instruction._SendInt16(msg.data,1)
+        self.xicro_instruction._SendStop()
+        self.xicro_instruction._SendCRC()
+        self.xicro_instruction._To_Send()
+
+        return 1
+
+
+
+    def callback_middle_finger_L(self,msg):
+        self.xicro_instruction._Reset_Buff()
+        self.xicro_instruction._Reset_CRC()
+        self.xicro_instruction._SendStart()
+        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendIdtopic(3)
+        self.xicro_instruction._SendInt16(msg.data,1)
+        self.xicro_instruction._SendStop()
+        self.xicro_instruction._SendCRC()
+        self.xicro_instruction._To_Send()
+
+        return 1
+
+
+
+    def callback_ring_finger_L(self,msg):
+        self.xicro_instruction._Reset_Buff()
+        self.xicro_instruction._Reset_CRC()
+        self.xicro_instruction._SendStart()
+        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendIdtopic(4)
+        self.xicro_instruction._SendInt16(msg.data,1)
+        self.xicro_instruction._SendStop()
+        self.xicro_instruction._SendCRC()
+        self.xicro_instruction._To_Send()
+
+        return 1
+
+
+
+    def callback_pinky_finger_L(self,msg):
+        self.xicro_instruction._Reset_Buff()
+        self.xicro_instruction._Reset_CRC()
+        self.xicro_instruction._SendStart()
+        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendIdtopic(5)
+        self.xicro_instruction._SendInt16(msg.data,1)
+        self.xicro_instruction._SendStop()
+        self.xicro_instruction._SendCRC()
+        self.xicro_instruction._To_Send()
+
+        return 1
+
+
+
+    def callback_bicep_L(self,msg):
+        self.xicro_instruction._Reset_Buff()
+        self.xicro_instruction._Reset_CRC()
+        self.xicro_instruction._SendStart()
+        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendIdtopic(6)
+        self.xicro_instruction._SendInt16(msg.data,1)
+        self.xicro_instruction._SendStop()
+        self.xicro_instruction._SendCRC()
+        self.xicro_instruction._To_Send()
+
+        return 1
+
+
+
+    def callback_rotate_L(self,msg):
+        self.xicro_instruction._Reset_Buff()
+        self.xicro_instruction._Reset_CRC()
+        self.xicro_instruction._SendStart()
+        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendIdtopic(7)
+        self.xicro_instruction._SendInt16(msg.data,1)
+        self.xicro_instruction._SendStop()
+        self.xicro_instruction._SendCRC()
+        self.xicro_instruction._To_Send()
+
+        return 1
+
+
+
+    def callback_shoulder_L(self,msg):
+        self.xicro_instruction._Reset_Buff()
+        self.xicro_instruction._Reset_CRC()
+        self.xicro_instruction._SendStart()
+        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendIdtopic(8)
+        self.xicro_instruction._SendInt16(msg.data,1)
+        self.xicro_instruction._SendStop()
+        self.xicro_instruction._SendCRC()
+        self.xicro_instruction._To_Send()
+
+        return 1
+
+
+
+    def callback_omoplate_L(self,msg):
+        self.xicro_instruction._Reset_Buff()
+        self.xicro_instruction._Reset_CRC()
+        self.xicro_instruction._SendStart()
+        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendIdtopic(9)
+        self.xicro_instruction._SendInt16(msg.data,1)
+        self.xicro_instruction._SendStop()
+        self.xicro_instruction._SendCRC()
+        self.xicro_instruction._To_Send()
+
+        return 1
+
+
+
+    def callback_neck(self,msg):
+        self.xicro_instruction._Reset_Buff()
+        self.xicro_instruction._Reset_CRC()
+        self.xicro_instruction._SendStart()
+        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendIdtopic(10)
+        self.xicro_instruction._SendInt16(msg.data,1)
+        self.xicro_instruction._SendStop()
+        self.xicro_instruction._SendCRC()
+        self.xicro_instruction._To_Send()
+
+        return 1
+
+
+
+    def callback_rothead(self,msg):
+        self.xicro_instruction._Reset_Buff()
+        self.xicro_instruction._Reset_CRC()
+        self.xicro_instruction._SendStart()
+        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendIdtopic(11)
+        self.xicro_instruction._SendInt16(msg.data,1)
+        self.xicro_instruction._SendStop()
+        self.xicro_instruction._SendCRC()
+        self.xicro_instruction._To_Send()
+
+        return 1
+
+
+
+    def callback_jaw(self,msg):
+        self.xicro_instruction._Reset_Buff()
+        self.xicro_instruction._Reset_CRC()
+        self.xicro_instruction._SendStart()
+        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendIdtopic(12)
+        self.xicro_instruction._SendInt16(msg.data,1)
+        self.xicro_instruction._SendStop()
+        self.xicro_instruction._SendCRC()
+        self.xicro_instruction._To_Send()
+
+        return 1
+
+
+
+    def callback_eye_x(self,msg):
+        self.xicro_instruction._Reset_Buff()
+        self.xicro_instruction._Reset_CRC()
+        self.xicro_instruction._SendStart()
+        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendIdtopic(13)
+        self.xicro_instruction._SendInt16(msg.data,1)
+        self.xicro_instruction._SendStop()
+        self.xicro_instruction._SendCRC()
+        self.xicro_instruction._To_Send()
+
+        return 1
+
+
+
+    def callback_eye_y(self,msg):
+        self.xicro_instruction._Reset_Buff()
+        self.xicro_instruction._Reset_CRC()
+        self.xicro_instruction._SendStart()
+        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendIdtopic(14)
+        self.xicro_instruction._SendInt16(msg.data,1)
+        self.xicro_instruction._SendStop()
+        self.xicro_instruction._SendCRC()
+        self.xicro_instruction._To_Send()
+
+        return 1
+
+
+
 
 
 class ThreadThree(Node):
@@ -1042,7 +1303,7 @@ class Uart():
             self.port = input.serial_port
             print("Input new argument uart_port is : "+self.port)
         else:
-            self.port = "/dev/serial/by-id/usb-Arduino__www.arduino.cc__0042_55332333230351803271-if00"
+            self.port = "/dev/serial/by-id/usb-Arduino_Srl_Arduino_Mega_95536333830351E0A261-if00"
             print("Input argument Port use is : "+self.port)
         if( input.baudrate != None):
             self.baudrate = input.baudrate

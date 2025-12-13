@@ -1042,7 +1042,7 @@ class Uart():
             self.port = input.serial_port
             print("Input new argument uart_port is : "+self.port)
         else:
-            self.port = "/dev/serial/by-id/usb-Arduino__www.arduino.cc__0042_55332333230351803271-if00"
+            self.port = "/dev/serial/by-id/usb-Arduino_Srl_Arduino_Mega_95536333830351E0A261-if00"
             print("Input argument Port use is : "+self.port)
         if( input.baudrate != None):
             self.baudrate = input.baudrate
