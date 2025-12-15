@@ -24,6 +24,10 @@ ros2 run xicro_pkg generate_library.py -mcu_type arduino
 serial_port: "usb-Arduino_Srl_Arduino_Mega_95536333830351D00131-if00"  # for Serial UART subsystem 1"
 ros2 run xicro_pkg generate_library.py -mcu_type arduino
 
+/home/andrew/inmoov_ws/src/Xicro/xicro_pkg/config/setup_xicro_subsystem3.yaml
+serial_port: "/dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_95437313934351502122-if00"  # for Serial UART Subsystem 2"
+ros2 run xicro_pkg generate_library.py -mcu_type arduino
+
 
 # Wrong ports are set here, I have no idea how.
 ./install/xicro_nodes/lib/python3.12/site-packages/xicro_nodes/xicro_node_subsys1_ID_1_arduino.py
