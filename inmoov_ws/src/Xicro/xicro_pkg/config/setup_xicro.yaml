@@ -1,10 +1,10 @@
 microcontroller:
-  idmcu: 2 # id of mcu 
-  namespace: "subsys2" # namespace
+  idmcu: 3 # id of mcu 
+  namespace: "subsys3" # namespace
   generate_library_Path: "Arduino"  # path for generate library
   connection:
     type: "UART"   # ["UART","UDP"] 
-    serial_port: "/dev/serial/by-id/usb-Arduino_Srl_Arduino_Mega_95536333830351E0A261-if00"  # for Serial UART Subsystem 2"
+    serial_port: "/dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_95437313934351502122-if00"  # for Serial UART Subsystem 2"
     baudrate: 57620  # for UART
     ip_address_mcu: ""  # for UDP example "192.168.1.xx"
     udp_port_mcu: 0  # for UDP
@@ -13,15 +13,11 @@ microcontroller:
 ros: # setup ros is reference from microcontroller example publisher is mean microcontroller publish to ros network
   publisher:  [                           ]
   subscriber: [
-    [1, "thumb_finger_L", "std_msgs/Int16.msg"],
-    [2, "index_finger_L", "std_msgs/Int16.msg"],
-    [3, "middle_finger_L", "std_msgs/Int16.msg"],
-    [4, "ring_finger_L", "std_msgs/Int16.msg"],
-    [5, "pinky_finger_L", "std_msgs/Int16.msg"],
-    [6, "bicep_L", "std_msgs/Int16.msg"],
-    [7, "rotate_L", "std_msgs/Int16.msg"],
-    [8, "shoulder_L", "std_msgs/Int16.msg"],
-    [9, "omoplate_L", "std_msgs/Int16.msg"],
+    [1, "neck", "std_msgs/Int16.msg"],
+    [2, "rothead", "std_msgs/Int16.msg"],
+    [3, "jaw", "std_msgs/Int16.msg"],
+    [4, "eye_x", "std_msgs/Int16.msg"],
+    [5, "eye_y", "std_msgs/Int16.msg"]
 
   ]
   srv_client: [                           ]

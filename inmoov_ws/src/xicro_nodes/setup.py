@@ -22,6 +22,7 @@ setup(
         'console_scripts': [
             'xicro_node_subsys1_ID_1_arduino = xicro_nodes.xicro_node_subsys1_ID_1_arduino:main',
             'xicro_node_subsys2_ID_2_arduino = xicro_nodes.xicro_node_subsys2_ID_2_arduino:main',
+            'xicro_node_subsys3_ID_3_arduino = xicro_nodes.xicro_node_subsys3_ID_3_arduino:main',
         ],
     },
 )
