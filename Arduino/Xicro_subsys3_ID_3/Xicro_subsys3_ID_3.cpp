@@ -12,7 +12,7 @@ void Xicro::begin(__UART_TYPE *SerialObject){
 
     _serial=SerialObject;
     // gen_void_begin
-    // gen pointer sub    _nonverify[0][0][0]=&_Subscription_neck.message.data;    _nonverify[1][0][0]=&_Subscription_rothead.message.data;    _nonverify[2][0][0]=&_Subscription_jaw.message.data;    _nonverify[3][0][0]=&_Subscription_eye_x.message.data;    _nonverify[4][0][0]=&_Subscription_eye_y.message.data;    _verify[0][0][0]=&Subscription_neck.message.data;    _verify[1][0][0]=&Subscription_rothead.message.data;    _verify[2][0][0]=&Subscription_jaw.message.data;    _verify[3][0][0]=&Subscription_eye_x.message.data;    _verify[4][0][0]=&Subscription_eye_y.message.data;    // gen pointer srv client res    // gen pointer srv server req    // gen pointer action client feed    // gen pointer action server req  
+    // gen pointer sub    _nonverify[0][0][0]=&_Subscription_neck.message.data;    _nonverify[1][0][0]=&_Subscription_rothead.message.data;    _nonverify[2][0][0]=&_Subscription_jaw.message.data;    _nonverify[3][0][0]=&_Subscription_eye_x.message.data;    _nonverify[4][0][0]=&_Subscription_eye_y.message.data;    _nonverify[5][0][0]=&_Subscription_attach.message.data;    _verify[0][0][0]=&Subscription_neck.message.data;    _verify[1][0][0]=&Subscription_rothead.message.data;    _verify[2][0][0]=&Subscription_jaw.message.data;    _verify[3][0][0]=&Subscription_eye_x.message.data;    _verify[4][0][0]=&Subscription_eye_y.message.data;    _verify[5][0][0]=&Subscription_attach.message.data;    // gen pointer srv client res    // gen pointer srv server req    // gen pointer action client feed    // gen pointer action server req  
   
 
 // get

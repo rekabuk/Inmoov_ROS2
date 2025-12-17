@@ -43,5 +43,10 @@ def generate_launch_description():
             #name='xicro_subsys2',
             output='screen'
         ),
+        Node(
+            package='xicro_nodes',
+            executable='xicro_node_subsys3_ID_3_arduino',
+            #name='xicro_subsys3',
+            output='screen'
+        ),
     ])
-f
