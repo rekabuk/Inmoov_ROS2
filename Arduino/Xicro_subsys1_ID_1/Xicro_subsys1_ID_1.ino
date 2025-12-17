@@ -67,16 +67,16 @@ struct SmoothServo {
 
 // Servo configuration: adjust rest_angle, min, max, step, and pin as needed for your robot
 SmoothServo servos[NUM_SERVOS] = {
-  //        Servo()  current target rest_angle  min  max  last_update step pin first_commanded
-  {Servo(), 0, 0,   144,    112, 177, 0,        2,   2,  false},   // THUMB_R: Right thumb
-  {Servo(), 0, 0,   135,     85, 150, 0,        2,   3,  false},   // INDEX_R: Right index finger
-  {Servo(), 0, 0,   135,     70, 140, 0,        2,   4,  false},   // MIDDLE_R: Right middle finger
-  {Servo(), 0, 0,   135,     80, 160, 0,        2,   5,  false},   // RING_R: Right ring finger
-  {Servo(), 0, 0,   135,     90, 165, 0,        2,   6,  false},   // PINKY_R: Right pinky finger
-  {Servo(), 0, 0,    50,     50, 110, 0,        1,   8,  false},   // BICEP_R: Right biceps
-  {Servo(), 0, 0,    90,     80, 135, 0,        1,   9,  false},   // ROTATE_R: Right arm rotation
-  {Servo(), 0, 0,    90,     90, 120, 0,        1,  10,  false},   // SHOULDER_R: Right shoulder
-  {Servo(), 0, 0,     5,      0,  20, 0,        1,  11,  false}    // OMOPLATE_R: Right omoplate
+  //        Servo()  current target rest_angle  min   max  last_update step pin first_commanded
+  {Servo(),           0,      0,      144,      112,  177,      0,      2,   2,     false},   // THUMB_R: Right thumb
+  {Servo(),           0,      0,      135,      85,   150,      0,      2,   3,     false},   // INDEX_R: Right index finger
+  {Servo(),           0,      0,      135,      70,   140,      0,      2,   4,     false},   // MIDDLE_R: Right middle finger
+  {Servo(),           0,      0,      135,      80,   160,      0,      2,   5,     false},   // RING_R: Right ring finger
+  {Servo(),           0,      0,      135,      90,   165,      0,      2,   6,     false},   // PINKY_R: Right pinky finger
+  {Servo(),           0,      0,       50,      50,   110,      0,      1,   8,     false},   // BICEP_R: Right biceps
+  {Servo(),           0,      0,       90,      72,   105,      0,      1,   9,     false},   // ROTATE_R: Right arm rotation
+  {Servo(),           0,      0,       20,       5,   145,      0,      1,  10,     false},   // SHOULDER_R: Right shoulder
+  {Servo(),           0,      0,       20,      15,    50,      0,      1,  11,     false}    // OMOPLATE_R: Right omoplate
 };
 
 Xicro xicro;

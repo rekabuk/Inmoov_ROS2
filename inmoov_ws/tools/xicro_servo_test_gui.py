@@ -51,17 +51,22 @@ SERVOS_SUBSYS2 = [
     "rotate_L",
     "shoulder_L",
     "omoplate_L",
+]
+
+SERVOS_SUBSYS3 = [
     "neck",
     "rothead",
     "jaw",
     "eye_x",
-    "eye_y"
+    "eye_y",
+    "attatch"
 ]
 
 # Map subsystem selection to their servo list and label
 SUBSYSTEMS = {
     "Subsystem 1 (Right Arm)": SERVOS_SUBSYS1,
-    "Subsystem 2 (Left Arm + Head)": SERVOS_SUBSYS2,
+    "Subsystem 2 (Left Arm": SERVOS_SUBSYS2,
+    "Subsystem 3 (Head)": SERVOS_SUBSYS3,
 }
 
 class ServoTestNode(Node):

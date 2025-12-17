@@ -36,21 +36,20 @@
         servos[SHOULDER_L].step = 1;
 */
 
-#include "Xicro_subsys2_ID_2.h"
+#include "Xicro_subsys3_ID_3.h"
 #include <Servo.h>
 
 #define INTERVAL_MS 60   // Global update interval for all servos (in milliseconds, adjustable)
 
-#define THUMB_L      0
-#define INDEX_L      1
-#define MIDDLE_L     2
-#define RING_L       3
-#define PINKY_L      4
-#define BICEP_L      5
-#define ROTATE_L     6
-#define SHOULDER_L   7
-#define OMOPLATE_L   8
-#define NUM_SERVOS   9
+#define NECK        0
+#define ROTHEAD     1
+#define JAW         2
+#define EYE_X       3
+#define EYE_Y       4
+#define NUM_SERVOS  5
+
+#define ATTATCH     0
+#define NUM_VALS    1
 
 struct SmoothServo {
   Servo servo;                 // Arduino Servo object (handles PWM)
@@ -65,19 +64,17 @@ struct SmoothServo {
   bool first_commanded;        // Indicates if the first valid command has been received
 };
 
+int attach;
+
 // Servo configuration: adjust rest_angle, min, max, step, and pin as needed for your robot
 SmoothServo servos[NUM_SERVOS] = {
-  //         Servo()  current target rest_angle  min   max  last_update step pin first_commanded
-  {Servo(),           0,        0,       144,     112, 177,     0,       2,    2,     false},   // THUMB_L: Left thumb
-  {Servo(),           0,        0,      135,      85,  150,     0,       2,    3,     false},   // INDEX_L: Left index finger
-  {Servo(),           0,        0,      135,      70,  140,     0,       2,    4,     false},   // MIDDLE_L: Left middle finger
-  {Servo(),           0,        0,      135,      80,  160,     0,       2,    5,     false},   // RING_L: Left ring finger
-  {Servo(),           0,        0,      135,      90,  165,     0,       2,    6,     false},   // PINKY_L: Left pinky finger
-  {Servo(),           0,        0,       50,      50,  110,     0,       1,    8,     false},   // BICEP_L: Left biceps
-  {Servo(),           0,        0,       90,      72,  105,     0,       2,    9,     false},   // ROTATE_L: Left arm rotation
-  {Servo(),           0,        0,       10,       5,  145,     0,       1,    0,     false},   // SHOULDER_L: Left shoulder
-  {Servo(),           0,        0,       20,      15,   50,     0,       1,    11,    false},   // OMOPLATE_L: Left omoplate
-};
+  //         Servo()  current target rest_angle  min  max  last_update step pin first_commanded
+  {Servo(),               0,    0,   90,        112, 177,    0,        2,   2,  false},   // NECK: 
+  {Servo(),               0,    0,   90,         85, 150,    0,        2,   3,  false},   // ROTHEAD: 
+  {Servo(),               0,    0,   90,         70, 140,    0,        2,   4,  false},   // JAW: 
+  {Servo(),               0,    0,   90,         80, 160,    0,        2,   5,  false},   // EYE_X: 
+  {Servo(),               0,    0,   90,         90, 165,    0,        2,   6,  false},   // EYE_Y: 
+ };
 
 Xicro xicro;
 
@@ -99,23 +96,38 @@ void setup() {
     servos[i].last_update = millis();              // Store initial time to manage the update interval
     servos[i].first_commanded = false;             // Mark as not yet received ROS2 command
   }
+
+  // Values - In correct order
+  attach = 0;  
 }
 
 void loop() {
   xicro.Spin_node();
 
   // Read all values received from ROS/XICRO for each servo, in the same order as the servo array
-  int incoming_vals[NUM_SERVOS] = {
-    xicro.Subscription_thumb_finger_L.message.data,
-    xicro.Subscription_index_finger_L.message.data,
-    xicro.Subscription_middle_finger_L.message.data,
-    xicro.Subscription_ring_finger_L.message.data,
-    xicro.Subscription_pinky_finger_L.message.data,
-    xicro.Subscription_bicep_L.message.data,
-    xicro.Subscription_rotate_L.message.data,
-    xicro.Subscription_shoulder_L.message.data,
-    xicro.Subscription_omoplate_L.message.data,
+  int incoming_vals[NUM_SERVOS+NUM_VALS] = {
+    xicro.Subscription_neck.message.data,
+    xicro.Subscription_rothead.message.data,
+    xicro.Subscription_jaw.message.data,
+    xicro.Subscription_eye_x.message.data,
+    xicro.Subscription_eye_y.message.data,
+    xicro.Subscription_attach.message.data,
   };
+
+  // Deal with incoming values
+
+  // Attach/deattatch servo
+  attach = incoming_vals[NUM_SERVOS];
+  for (int i = 0; i < NUM_SERVOS; i++) {
+      
+      if (attach & 1) {
+        servos[i].servo.attach(servos[i].pin);
+      } else {
+        servos[i].servo.attach(0);
+      }
+
+      attach = attach >> 1;
+  }
 
   for (int i = 0; i < NUM_SERVOS; i++) {
     // Activate ROS/XICRO control as soon as any value arrives (including 0)
@@ -153,6 +165,7 @@ void loop() {
       // Always restrict before sending to servo
       int bounded = safe_constrain(servos[i].current, servos[i].min_angle, servos[i].max_angle);
       servos[i].servo.write(bounded);
-    }
+    }    
   }
+
 }
