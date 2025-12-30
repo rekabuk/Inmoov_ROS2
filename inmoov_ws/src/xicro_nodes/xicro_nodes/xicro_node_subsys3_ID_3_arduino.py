@@ -515,32 +515,29 @@ class Subscriber_node(Node):
 
 
         #gen
-        self.subscription_thumb_finger_L = self.create_subscription(Int16,'thumb_finger_L',self.callback_thumb_finger_L,10)
-        self.callback_thumb_finger_L
-        self.subscription_index_finger_L = self.create_subscription(Int16,'index_finger_L',self.callback_index_finger_L,10)
-        self.callback_index_finger_L
-        self.subscription_middle_finger_L = self.create_subscription(Int16,'middle_finger_L',self.callback_middle_finger_L,10)
-        self.callback_middle_finger_L
-        self.subscription_ring_finger_L = self.create_subscription(Int16,'ring_finger_L',self.callback_ring_finger_L,10)
-        self.callback_ring_finger_L
-        self.subscription_pinky_finger_L = self.create_subscription(Int16,'pinky_finger_L',self.callback_pinky_finger_L,10)
-        self.callback_pinky_finger_L
-        self.subscription_bicep_L = self.create_subscription(Int16,'bicep_L',self.callback_bicep_L,10)
-        self.callback_bicep_L
-        self.subscription_rotate_L = self.create_subscription(Int16,'rotate_L',self.callback_rotate_L,10)
-        self.callback_rotate_L
-        self.subscription_shoulder_L = self.create_subscription(Int16,'shoulder_L',self.callback_shoulder_L,10)
-        self.callback_shoulder_L
-        self.subscription_omoplate_L = self.create_subscription(Int16,'omoplate_L',self.callback_omoplate_L,10)
-        self.callback_omoplate_L
+        self.subscription_neck = self.create_subscription(Int16,'neck',self.callback_neck,10)
+        self.callback_neck
+        self.subscription_rothead = self.create_subscription(Int16,'rothead',self.callback_rothead,10)
+        self.callback_rothead
+        self.subscription_jaw = self.create_subscription(Int16,'jaw',self.callback_jaw,10)
+        self.callback_jaw
+        self.subscription_eye_x = self.create_subscription(Int16,'eye_x',self.callback_eye_x,10)
+        self.callback_eye_x
+        self.subscription_eye_y = self.create_subscription(Int16,'eye_y',self.callback_eye_y,10)
+        self.callback_eye_y
+        self.subscription_attach = self.create_subscription(Int16,'attach',self.callback_attach,10)
+        self.callback_attach
+
+
+
 
     # gen callback sub
     # gen callback Sub
-    def callback_thumb_finger_L(self,msg):
+    def callback_neck(self,msg):
         self.xicro_instruction._Reset_Buff()
         self.xicro_instruction._Reset_CRC()
         self.xicro_instruction._SendStart()
-        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendSignature(3,2)
         self.xicro_instruction._SendIdtopic(1)
         self.xicro_instruction._SendInt16(msg.data,1)
         self.xicro_instruction._SendStop()
@@ -551,11 +548,11 @@ class Subscriber_node(Node):
 
 
 
-    def callback_index_finger_L(self,msg):
+    def callback_rothead(self,msg):
         self.xicro_instruction._Reset_Buff()
         self.xicro_instruction._Reset_CRC()
         self.xicro_instruction._SendStart()
-        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendSignature(3,2)
         self.xicro_instruction._SendIdtopic(2)
         self.xicro_instruction._SendInt16(msg.data,1)
         self.xicro_instruction._SendStop()
@@ -566,11 +563,11 @@ class Subscriber_node(Node):
 
 
 
-    def callback_middle_finger_L(self,msg):
+    def callback_jaw(self,msg):
         self.xicro_instruction._Reset_Buff()
         self.xicro_instruction._Reset_CRC()
         self.xicro_instruction._SendStart()
-        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendSignature(3,2)
         self.xicro_instruction._SendIdtopic(3)
         self.xicro_instruction._SendInt16(msg.data,1)
         self.xicro_instruction._SendStop()
@@ -581,11 +578,11 @@ class Subscriber_node(Node):
 
 
 
-    def callback_ring_finger_L(self,msg):
+    def callback_eye_x(self,msg):
         self.xicro_instruction._Reset_Buff()
         self.xicro_instruction._Reset_CRC()
         self.xicro_instruction._SendStart()
-        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendSignature(3,2)
         self.xicro_instruction._SendIdtopic(4)
         self.xicro_instruction._SendInt16(msg.data,1)
         self.xicro_instruction._SendStop()
@@ -596,11 +593,11 @@ class Subscriber_node(Node):
 
 
 
-    def callback_pinky_finger_L(self,msg):
+    def callback_eye_y(self,msg):
         self.xicro_instruction._Reset_Buff()
         self.xicro_instruction._Reset_CRC()
         self.xicro_instruction._SendStart()
-        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendSignature(3,2)
         self.xicro_instruction._SendIdtopic(5)
         self.xicro_instruction._SendInt16(msg.data,1)
         self.xicro_instruction._SendStop()
@@ -611,11 +608,11 @@ class Subscriber_node(Node):
 
 
 
-    def callback_bicep_L(self,msg):
+    def callback_attach(self,msg):
         self.xicro_instruction._Reset_Buff()
         self.xicro_instruction._Reset_CRC()
         self.xicro_instruction._SendStart()
-        self.xicro_instruction._SendSignature(2,2)
+        self.xicro_instruction._SendSignature(3,2)
         self.xicro_instruction._SendIdtopic(6)
         self.xicro_instruction._SendInt16(msg.data,1)
         self.xicro_instruction._SendStop()
@@ -626,48 +623,6 @@ class Subscriber_node(Node):
 
 
 
-    def callback_rotate_L(self,msg):
-        self.xicro_instruction._Reset_Buff()
-        self.xicro_instruction._Reset_CRC()
-        self.xicro_instruction._SendStart()
-        self.xicro_instruction._SendSignature(2,2)
-        self.xicro_instruction._SendIdtopic(7)
-        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()
-        self.xicro_instruction._SendCRC()
-        self.xicro_instruction._To_Send()
-
-        return 1
-
-
-
-    def callback_shoulder_L(self,msg):
-        self.xicro_instruction._Reset_Buff()
-        self.xicro_instruction._Reset_CRC()
-        self.xicro_instruction._SendStart()
-        self.xicro_instruction._SendSignature(2,2)
-        self.xicro_instruction._SendIdtopic(8)
-        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()
-        self.xicro_instruction._SendCRC()
-        self.xicro_instruction._To_Send()
-
-        return 1
-
-
-
-    def callback_omoplate_L(self,msg):
-        self.xicro_instruction._Reset_Buff()
-        self.xicro_instruction._Reset_CRC()
-        self.xicro_instruction._SendStart()
-        self.xicro_instruction._SendSignature(2,2)
-        self.xicro_instruction._SendIdtopic(9)
-        self.xicro_instruction._SendInt16(msg.data,1)
-        self.xicro_instruction._SendStop()
-        self.xicro_instruction._SendCRC()
-        self.xicro_instruction._To_Send()
-
-        return 1
 
 
 class ThreadThree(Node):
@@ -1212,7 +1167,7 @@ class Uart():
             self.port = input.serial_port
             print("Input new argument uart_port is : "+self.port)
         else:
-            self.port = "/dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_95437313934351502122-if00"
+            self.port = "/dev/ttyACM0_A"
             print("Input argument Port use is : "+self.port)
         if( input.baudrate != None):
             self.baudrate = input.baudrate
@@ -1252,7 +1207,7 @@ def Transmit_uart(Obj_uart): #processer 2
 
 class Srv_client_node(Node):
     def __init__(self,Obj_uart,OnIdsrv,Ongrab,sequence):
-        super().__init__('xicro_service_client_node_subsys3_'+str(sequence))        # gen Id mcu
+        super().__init__('xicro_service_client_node_subsys2_'+str(sequence))        # gen Id mcu
         self.Idmcu = 3
         self.Obj_uart = Obj_uart
         self.xicro_instruction = Xicro_instruction(self.Obj_uart)
@@ -1385,7 +1340,7 @@ class Srv_client_node(Node):
 
 class Action_client_node(Node):
     def __init__(self,Obj_uart,OnIdaction,Ongrab,sequence):
-        super().__init__('xicro_action_client_node_subsys3_'+str(sequence))        # gen Id mcu
+        super().__init__('xicro_action_client_node_subsys2_'+str(sequence))        # gen Id mcu
         self.Idmcu = 3
         self.Obj_uart = Obj_uart
         self.xicro_instruction = Xicro_instruction(self.Obj_uart)

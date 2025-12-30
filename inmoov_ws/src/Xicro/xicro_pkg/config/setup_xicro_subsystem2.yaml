@@ -22,6 +22,7 @@ ros: # setup ros is reference from microcontroller example publisher is mean mic
     [7, "rotate_L", "std_msgs/Int16.msg"],
     [8, "shoulder_L", "std_msgs/Int16.msg"],
     [9, "omoplate_L", "std_msgs/Int16.msg"],
+
   ]
   srv_client: [                           ]
   srv_server: [                           ]

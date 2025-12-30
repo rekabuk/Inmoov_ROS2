@@ -59,7 +59,8 @@ SERVOS_SUBSYS3 = [
     "jaw",
     "eye_x",
     "eye_y",
-    "attatch"
+    "head_front",
+    "head_rear"
 ]
 
 # Map subsystem selection to their servo list and label

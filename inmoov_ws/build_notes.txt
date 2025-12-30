@@ -42,7 +42,6 @@ source ~/inmoov_ws/install/setup.bash
 #Run nodes
 ros2 launch xicro_nodes xicro_nodes.launch.py
 
-
 #Start Firefox
 ros2 launch foxglove_bridge foxglove_bridge_launch.xml port:=8765
 
@@ -59,3 +58,14 @@ ros2 launch foxglove_bridge foxglove_bridge_launch.xml port:=8765
     [13, "eye_x", "std_msgs/Int16.msg"],
     [14, "eye_y", "std_msgs/Int16.msg"]
 
+
+
+# This monitors a serial port and displays to the screen
+sudo interceptty -s 'ispeed 19200 ospeed 19200' -l  /dev/ttyACM0 /dev/ttyACM0_A
+# This echos to the new port
+echo -n -e "hello\n" > /dev/ttyACM0_A
+
+
+#Find files
+https://stackoverflow.com/questions/16956810/find-all-files-containing-a-specific-text-string-on-linux
+grep -rnw '/path/to/somewhere/' -e 'pattern'
