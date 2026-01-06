@@ -515,25 +515,24 @@ class Subscriber_node(Node):
 
 
         #gen
-        self.subscription_neck = self.create_subscription(Int16,'neck',self.callback_neck,10)
-        self.callback_neck
-        self.subscription_rothead = self.create_subscription(Int16,'rothead',self.callback_rothead,10)
-        self.callback_rothead
+        self.subscription_head_rot = self.create_subscription(Int16,'head_rot',self.callback_head_rot,10)
+        self.callback_head_rot
         self.subscription_jaw = self.create_subscription(Int16,'jaw',self.callback_jaw,10)
         self.callback_jaw
-        self.subscription_eye_x = self.create_subscription(Int16,'eye_x',self.callback_eye_x,10)
-        self.callback_eye_x
-        self.subscription_eye_y = self.create_subscription(Int16,'eye_y',self.callback_eye_y,10)
-        self.callback_eye_y
-        self.subscription_attach = self.create_subscription(Int16,'attach',self.callback_attach,10)
-        self.callback_attach
+        self.subscription_eyey = self.create_subscription(Int16,'eyey',self.callback_eyey,10)
+        self.callback_eyey
+        self.subscription_eyex_l = self.create_subscription(Int16,'eyex_l',self.callback_eyex_l,10)
+        self.callback_eyex_l
+        self.subscription_eyex_r = self.create_subscription(Int16,'eyex_r',self.callback_eyex_r,10)
+        self.callback_eyex_r
+        self.subscription_head_front = self.create_subscription(Int16,'head_front',self.callback_head_front,10)
+        self.callback_head_front
+        self.subscription_head_rear = self.create_subscription(Int16,'head_rear',self.callback_head_rear,10)
+        self.callback_head_rear
 
 
 
-
-    # gen callback sub
-    # gen callback Sub
-    def callback_neck(self,msg):
+    def callback_head_rot(self,msg):
         self.xicro_instruction._Reset_Buff()
         self.xicro_instruction._Reset_CRC()
         self.xicro_instruction._SendStart()
@@ -548,7 +547,7 @@ class Subscriber_node(Node):
 
 
 
-    def callback_rothead(self,msg):
+    def callback_jaw(self,msg):
         self.xicro_instruction._Reset_Buff()
         self.xicro_instruction._Reset_CRC()
         self.xicro_instruction._SendStart()
@@ -563,7 +562,7 @@ class Subscriber_node(Node):
 
 
 
-    def callback_jaw(self,msg):
+    def callback_eyey(self,msg):
         self.xicro_instruction._Reset_Buff()
         self.xicro_instruction._Reset_CRC()
         self.xicro_instruction._SendStart()
@@ -578,7 +577,7 @@ class Subscriber_node(Node):
 
 
 
-    def callback_eye_x(self,msg):
+    def callback_eyex_l(self,msg):
         self.xicro_instruction._Reset_Buff()
         self.xicro_instruction._Reset_CRC()
         self.xicro_instruction._SendStart()
@@ -593,7 +592,7 @@ class Subscriber_node(Node):
 
 
 
-    def callback_eye_y(self,msg):
+    def callback_eyex_r(self,msg):
         self.xicro_instruction._Reset_Buff()
         self.xicro_instruction._Reset_CRC()
         self.xicro_instruction._SendStart()
@@ -606,14 +605,25 @@ class Subscriber_node(Node):
 
         return 1
 
-
-
-    def callback_attach(self,msg):
+    def callback_head_front(self,msg):
         self.xicro_instruction._Reset_Buff()
         self.xicro_instruction._Reset_CRC()
         self.xicro_instruction._SendStart()
         self.xicro_instruction._SendSignature(3,2)
         self.xicro_instruction._SendIdtopic(6)
+        self.xicro_instruction._SendInt16(msg.data,1)
+        self.xicro_instruction._SendStop()
+        self.xicro_instruction._SendCRC()
+        self.xicro_instruction._To_Send()
+
+        return 1
+
+    def callback_head_rear(self,msg):
+        self.xicro_instruction._Reset_Buff()
+        self.xicro_instruction._Reset_CRC()
+        self.xicro_instruction._SendStart()
+        self.xicro_instruction._SendSignature(3,2)
+        self.xicro_instruction._SendIdtopic(7)
         self.xicro_instruction._SendInt16(msg.data,1)
         self.xicro_instruction._SendStop()
         self.xicro_instruction._SendCRC()

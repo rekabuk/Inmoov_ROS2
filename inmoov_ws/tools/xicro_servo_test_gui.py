@@ -50,15 +50,15 @@ SERVOS_SUBSYS2 = [
     "bicep_L",
     "rotate_L",
     "shoulder_L",
-    "omoplate_L",
+    "omoplate_L"
 ]
 
 SERVOS_SUBSYS3 = [
-    "neck",
-    "rothead",
+    "head_rot",
     "jaw",
-    "eye_x",
-    "eye_y",
+    "eyey",
+    "eyex_l",
+    "eyex_r",
     "head_front",
     "head_rear"
 ]

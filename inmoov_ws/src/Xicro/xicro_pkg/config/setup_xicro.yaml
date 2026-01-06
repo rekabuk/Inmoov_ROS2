@@ -4,7 +4,7 @@ microcontroller:
   generate_library_Path: "Arduino"  # path for generate library
   connection:
     type: "UART"   # ["UART","UDP"] 
-    serial_port: "/dev/ttyACM0"  # for Serial UART Subsystem 2"
+    serial_port: "/dev/ttyACM0_A"  # for Serial UART Subsystem 2"
     baudrate: 57620  # for UART
     ip_address_mcu: ""  # for UDP example "192.168.1.xx"
     udp_port_mcu: 0  # for UDP
@@ -13,15 +13,15 @@ microcontroller:
 ros: # setup ros is reference from microcontroller example publisher is mean microcontroller publish to ros network
   publisher:  [                           ]
   subscriber: [
-    [1, "neck", "std_msgs/Int16.msg"],
-    [2, "rot_head", "std_msgs/Int16.msg"],
-    [3, "jaw", "std_msgs/Int16.msg"],
-    [4, "eye_x", "std_msgs/Int16.msg"],
-    [5, "eye_y", "std_msgs/Int16.msg"],
-    [5, "head_front", "std_msgs/Int16.msg"],
-    [6, "head_rear", "std_msgs/Int16.msg"]
- 
+    [1, "head_rot", "std_msgs/Int16.msg"],
+    [2, "jaw", "std_msgs/Int16.msg"],
+    [3, "eyey", "std_msgs/Int16.msg"],
+    [4, "eyex_l", "std_msgs/Int16.msg"],
+    [5, "eyex_r", "std_msgs/Int16.msg"],
+    [6, "head_front", "std_msgs/Int16.msg"],
+    [7, "head_rear", "std_msgs/Int16.msg"], 
   ]
+  
   srv_client: [                           ]
   srv_server: [                           ]
   action_client: [                        ]

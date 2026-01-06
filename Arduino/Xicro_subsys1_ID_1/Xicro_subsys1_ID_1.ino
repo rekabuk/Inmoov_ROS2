@@ -75,7 +75,7 @@ SmoothServo servos[NUM_SERVOS] = {
   {Servo(),           0,      0,      135,      90,   165,      0,      2,   6,     false},   // PINKY_R: Right pinky finger
   {Servo(),           0,      0,       50,      50,   110,      0,      1,   8,     false},   // BICEP_R: Right biceps
   {Servo(),           0,      0,       90,      72,   105,      0,      1,   9,     false},   // ROTATE_R: Right arm rotation
-  {Servo(),           0,      0,       20,       5,   145,      0,      1,  10,     false},   // SHOULDER_R: Right shoulder
+  {Servo(),           0,      0,       10,       5,   145,      0,      1,  10,     false},   // SHOULDER_R: Right shoulder
   {Servo(),           0,      0,       20,      15,    50,      0,      1,  11,     false}    // OMOPLATE_R: Right omoplate
 };
 

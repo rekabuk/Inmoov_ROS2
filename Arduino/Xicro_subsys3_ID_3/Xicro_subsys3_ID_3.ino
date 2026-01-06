@@ -41,15 +41,17 @@
 
 #define INTERVAL_MS 60   // Global update interval for all servos (in milliseconds, adjustable)
 
-#define NECK        0
-#define ROTHEAD     1
-#define JAW         2
-#define EYE_X       3
-#define EYE_Y       4
-#define NUM_SERVOS  5
+#define HEAD_ROT    0
+#define JAW         1                  
+#define EYEY        2
+#define EYEX_L      3
+#define EYEX_R      4
+#define HEAD_FRONT  5
+#define HEAD_REAR   6
+#define NUM_SERVOS  7
 
 #define ATTATCH     0
-#define NUM_VALS    1
+#define NUM_VALS    0          // Number of bytes per message
 
 struct SmoothServo {
   Servo servo;                 // Arduino Servo object (handles PWM)
@@ -69,11 +71,13 @@ int attach;
 // Servo configuration: adjust rest_angle, min, max, step, and pin as needed for your robot
 SmoothServo servos[NUM_SERVOS] = {
   //         Servo()  current target rest_angle  min  max  last_update step pin first_commanded
-  {Servo(),               0,    0,   90,        112, 177,    0,        2,   2,  false},   // NECK: 
-  {Servo(),               0,    0,   90,         85, 150,    0,        2,   3,  false},   // ROTHEAD: 
-  {Servo(),               0,    0,   90,         70, 140,    0,        2,   4,  false},   // JAW: 
-  {Servo(),               0,    0,   90,         80, 160,    0,        2,   5,  false},   // EYE_X: 
-  {Servo(),               0,    0,   90,         90, 165,    0,        2,   6,  false},   // EYE_Y: 
+  {Servo(),               0,    0,   90,         20, 170,    0,        2,   3,  false},   // HEAD_ROT: 
+  {Servo(),               0,    0,   90,         20, 170,    0,        2,   4,  false},   // JAW: 
+  {Servo(),               0,    0,   90,         20, 170,    0,        2,   5,  false},   // EYEY: 
+  {Servo(),               0,    0,   90,         20, 170,    0,        2,   6,  false},   // EYEX_L: 
+  {Servo(),               0,    0,   90,         20, 170,    0,        2,   7,  false},   // EYEX_R: 
+  {Servo(),               0,    0,   90,         20, 170,    0,        2,   8,  false},   // HEAD_REAR: 
+  {Servo(),               0,    0,   90,         20, 170,    0,        2,   9,  false},   // HEAD_FRONT: 
  };
 
 Xicro xicro;
@@ -97,38 +101,33 @@ void setup() {
     servos[i].first_commanded = false;             // Mark as not yet received ROS2 command
   }
 
-  // Values - In correct order
-  attach = 0;  
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making 
 }
 
 void loop() {
   xicro.Spin_node();
 
   // Read all values received from ROS/XICRO for each servo, in the same order as the servo array
-  int incoming_vals[NUM_SERVOS+NUM_VALS] = {
-    xicro.Subscription_neck.message.data,
-    xicro.Subscription_rothead.message.data,
+  int incoming_vals[NUM_SERVOS] = {
+    xicro.Subscription_head_rot.message.data,
     xicro.Subscription_jaw.message.data,
-    xicro.Subscription_eye_x.message.data,
-    xicro.Subscription_eye_y.message.data,
-    xicro.Subscription_attach.message.data,
+    xicro.Subscription_eyey.message.data,
+    xicro.Subscription_eyex_l.message.data,
+    xicro.Subscription_eyex_l.message.data,
+    xicro.Subscription_head_front.message.data,
+    xicro.Subscription_head_rear.message.data,
   };
 
-  // Deal with incoming values
+    if (incoming_vals[0] != 0) {
+      digitalWrite(LED_BUILTIN, HIGH);   // turn the LED off by making the voltage LOW
+      delay(500);                      // wait for a second
+      digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
+      delay(500);                      // wait for a second
+    }
 
-  // Attach/deattatch servo
-  attach = incoming_vals[NUM_SERVOS];
-  for (int i = 0; i < NUM_SERVOS; i++) {
-      
-      if (attach & 1) {
-        servos[i].servo.attach(servos[i].pin);
-      } else {
-        servos[i].servo.attach(0);
-      }
 
-      attach = attach >> 1;
-  }
-
+ 
   for (int i = 0; i < NUM_SERVOS; i++) {
     // Activate ROS/XICRO control as soon as any value arrives (including 0)
     if (!servos[i].first_commanded && incoming_vals[i] != 0) {
@@ -141,6 +140,8 @@ void loop() {
         servos[i].target = servos[i].rest_angle;
       } else {
         servos[i].target = safe_constrain(incoming_vals[i], servos[i].min_angle, servos[i].max_angle);
+
+   
       }
     } else {
       // Before any command arrives, stay at rest position
@@ -165,7 +166,7 @@ void loop() {
       // Always restrict before sending to servo
       int bounded = safe_constrain(servos[i].current, servos[i].min_angle, servos[i].max_angle);
       servos[i].servo.write(bounded);
-    }    
+    }
   }
-
 }
+
