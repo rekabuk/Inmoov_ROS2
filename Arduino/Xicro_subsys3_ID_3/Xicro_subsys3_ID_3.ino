@@ -119,13 +119,6 @@ void loop() {
     xicro.Subscription_head_rear.message.data,
   };
 
-    if (incoming_vals[0] != 0) {
-      digitalWrite(LED_BUILTIN, HIGH);   // turn the LED off by making the voltage LOW
-      delay(500);                      // wait for a second
-      digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
-      delay(500);                      // wait for a second
-    }
-
 
  
   for (int i = 0; i < NUM_SERVOS; i++) {
@@ -141,6 +134,10 @@ void loop() {
       } else {
         servos[i].target = safe_constrain(incoming_vals[i], servos[i].min_angle, servos[i].max_angle);
 
+      digitalWrite(LED_BUILTIN, HIGH);   // turn the LED off by making the voltage LOW
+      delay(500);                      // wait for a second
+      digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
+      delay(500);                      // wait for a second
    
       }
     } else {
