@@ -71,13 +71,13 @@ int attach;
 // Servo configuration: adjust rest_angle, min, max, step, and pin as needed for your robot
 SmoothServo servos[NUM_SERVOS] = {
   //         Servo()  current target rest_angle  min  max  last_update step pin first_commanded
-  {Servo(),               0,    0,   90,         20, 170,    0,        2,   3,  false},   // HEAD_ROT: 
-  {Servo(),               0,    0,   90,         20, 170,    0,        2,   4,  false},   // JAW: 
-  {Servo(),               0,    0,   90,         20, 170,    0,        2,   5,  false},   // EYEY: 
-  {Servo(),               0,    0,   90,         20, 170,    0,        2,   6,  false},   // EYEX_L: 
-  {Servo(),               0,    0,   90,         20, 170,    0,        2,   7,  false},   // EYEX_R: 
+  {Servo(),               0,    0,   90,         20, 170,    0,        2,   2,  false},   // HEAD_ROT:    1
+  {Servo(),               0,    0,   90,         20, 170,    0,        2,   3,  false},   // JAW:         1
+  {Servo(),               0,    0,   90,         20, 170,    0,        2,   4,  false},   // EYEY:        1
+  {Servo(),               0,    0,   90,         20, 170,    0,        2,   5,  false},   // EYEX_L: 
+  {Servo(),               0,    0,   90,         20, 170,    0,        2,   6,  false},   // EYEX_R: 
+  {Servo(),               0,    0,   90,         20, 170,    0,        2,   7,  false},   // HEAD_FRONT: 
   {Servo(),               0,    0,   90,         20, 170,    0,        2,   8,  false},   // HEAD_REAR: 
-  {Servo(),               0,    0,   90,         20, 170,    0,        2,   9,  false},   // HEAD_FRONT: 
  };
 
 Xicro xicro;
@@ -133,12 +133,6 @@ void loop() {
         servos[i].target = servos[i].rest_angle;
       } else {
         servos[i].target = safe_constrain(incoming_vals[i], servos[i].min_angle, servos[i].max_angle);
-
-      digitalWrite(LED_BUILTIN, HIGH);   // turn the LED off by making the voltage LOW
-      delay(500);                      // wait for a second
-      digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
-      delay(500);                      // wait for a second
-   
       }
     } else {
       // Before any command arrives, stay at rest position
