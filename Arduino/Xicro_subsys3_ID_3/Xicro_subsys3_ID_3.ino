@@ -71,13 +71,13 @@ int attach;
 // Servo configuration: adjust rest_angle, min, max, step, and pin as needed for your robot
 SmoothServo servos[NUM_SERVOS] = {
   //         Servo()  current target rest_angle  min  max  last_update step pin first_commanded
-  {Servo(),               0,    0,   90,         20, 170,    0,        2,   2,  false},   // HEAD_ROT:    1
-  {Servo(),               0,    0,   90,         20, 170,    0,        2,   3,  false},   // JAW:         1
-  {Servo(),               0,    0,   90,         20, 170,    0,        2,   4,  false},   // EYEY:        1
-  {Servo(),               0,    0,   90,         20, 170,    0,        2,   5,  false},   // EYEX_L: 
-  {Servo(),               0,    0,   90,         20, 170,    0,        2,   6,  false},   // EYEX_R: 
-  {Servo(),               0,    0,   90,         20, 170,    0,        2,   7,  false},   // HEAD_FRONT: 
-  {Servo(),               0,    0,   90,         20, 170,    0,        2,   8,  false},   // HEAD_REAR: 
+  {Servo(),               0,    0,   95,         30, 120,    0,        2,   2,  false},   // HEAD_ROT:    1
+  {Servo(),               0,    0,  100,         45, 110,    0,        2,   3,  false},   // JAW:         1
+  {Servo(),               0,    0,  100,         40, 130,    0,        2,   4,  false},   // EYEY:        1
+  {Servo(),               0,    0,   90,         60, 130,    0,        2,   5,  false},   // EYEX_L: 
+  {Servo(),               0,    0,   90,         60, 130,    0,        2,   6,  false},   // EYEX_R: 
+  {Servo(),               0,    0,   60,         30, 110,    0,        2,   7,  false},   // HEAD_FRONT: 
+  {Servo(),               0,    0,  100,         70, 130,    0,        2,   8,  false},   // HEAD_REAR: 
  };
 
 Xicro xicro;

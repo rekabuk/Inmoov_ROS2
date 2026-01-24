@@ -49,8 +49,6 @@ ros2 launch foxglove_bridge foxglove_bridge_launch.xml port:=8765
 /home/andrew/inmoov_ws/tools/cli_tool.py
 
 
-
-
 #subsystem2 remove
     [10, "neck", "std_msgs/Int16.msg"],
     [11, "rothead", "std_msgs/Int16.msg"],
@@ -61,6 +59,7 @@ ros2 launch foxglove_bridge foxglove_bridge_launch.xml port:=8765
 
 
 # This monitors a serial port and displays to the screen
+# It remaps serisl port and monitors what flows between the two
 sudo interceptty -s 'ispeed 19200 ospeed 19200' -l  /dev/ttyACM0 /dev/ttyACM0_A
 # This echos to the new port
 echo -n -e "hello\n" > /dev/ttyACM0_A
@@ -69,3 +68,8 @@ echo -n -e "hello\n" > /dev/ttyACM0_A
 #Find files
 https://stackoverflow.com/questions/16956810/find-all-files-containing-a-specific-text-string-on-linux
 grep -rnw '/path/to/somewhere/' -e 'pattern'
+
+
+
+
+
