@@ -6,7 +6,7 @@ microcontroller:
     type: "UART"   # ["UART","UDP"] 
     #serial_port: "/dev/serial/by-id/usb-Arduino_Srl_Arduino_Mega_95536333830351D00131-if00"  # for Serial UART Subsystem 2"
     serial_port: "/dev/ttyACM1_A"
-    baudrate: 57620  # for UART
+    baudrate: 57600  # for UART
     ip_address_mcu: ""  # for UDP example "192.168.1.xx"
     udp_port_mcu: 0  # for UDP
 

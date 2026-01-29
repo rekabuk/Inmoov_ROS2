@@ -86,9 +86,12 @@ int safe_constrain(int value, int min_val, int max_val) {
   return constrain(value, min_val, max_val);
 }
 
+
 void setup() {
   Serial.begin(57600);
   xicro.begin(&Serial);
+
+  pinMode(LED_BUILTIN, OUTPUT);
 
   // Initialize all servos: set to rest position, attach to pins, and reset control state variables
   for (int i = 0; i < NUM_SERVOS; i++) {
@@ -104,6 +107,7 @@ void setup() {
 void loop() {
   xicro.Spin_node();
 
+  
   // Read all values received from ROS/XICRO for each servo, in the same order as the servo array
   int incoming_vals[NUM_SERVOS] = {
     xicro.Subscription_thumb_finger_R.message.data,
@@ -117,6 +121,16 @@ void loop() {
     xicro.Subscription_omoplate_R.message.data
   };
 
+  /*
+  if (incoming_vals[8] == 32) 
+  {
+    digitalWrite(LED_BUILTIN, HIGH);
+    delay(100);
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(100);
+  }
+  */
+  
   for (int i = 0; i < NUM_SERVOS; i++) {
     // Activate ROS/XICRO control as soon as any value arrives (including 0)
     if (!servos[i].first_commanded && incoming_vals[i] != 0) {
@@ -134,6 +148,7 @@ void loop() {
       // Before any command arrives, stay at rest position
       servos[i].target = servos[i].rest_angle;
     }
+
   }
 
   unsigned long now = millis();
