@@ -1035,7 +1035,7 @@ class Uart():
             self.port = input.serial_port
             print("Input new argument uart_port is : "+self.port)
         else:
-            self.port = "/dev/ttyACM0_A"
+            self.port = "/dev/ttyACM0"
             print("Input argument Port use is : "+self.port)
         if( input.baudrate != None):
             self.baudrate = input.baudrate

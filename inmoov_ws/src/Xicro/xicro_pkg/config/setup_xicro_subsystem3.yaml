@@ -5,8 +5,8 @@ microcontroller:
   connection:
     type: "UART"   # ["UART","UDP"] 
     
-    serial_port: "/dev/ttyACM0_A"  # for Serial UART Subsystem 2"
-    baudrate: 57620  # for UART
+    serial_port: "/dev/ttyACM0"  # for Serial UART Subsystem 2"
+    baudrate: 57600  # for UART
     ip_address_mcu: ""  # for UDP example "192.168.1.xx"
     udp_port_mcu: 0  # for UDP
 

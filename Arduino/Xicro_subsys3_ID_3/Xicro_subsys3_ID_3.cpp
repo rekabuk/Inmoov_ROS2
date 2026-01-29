@@ -404,11 +404,6 @@ void Xicro::Spin_node(){
 
     if(_serial->available() > 0){
         _serial->readBytes(_datain,1);
-        //digitalWrite(LED_BUILTIN, HIGH);   // turn the LED off by making 
-       // delay(50);
-        //digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making
-        //delay(50) ;
-
 
         
         switch (_state){
