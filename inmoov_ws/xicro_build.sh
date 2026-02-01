@@ -36,3 +36,5 @@ source install/setup.bash
 ros2 run xicro_pkg generate_library.py -mcu_type arduino
 
 ros2 run xicro_pkg generate_xicro_node.py -mcu_type arduino
+
+

@@ -71,5 +71,12 @@ grep -rnw '/path/to/somewhere/' -e 'pattern'
 
 
 
+#Camera
+echo $ROS_DISTRO
+sudo apt-get install ros-jazzy-usb-cam
+#Need to calibrate camera
+sudo apt install ros-$ROS_DISTRO-camera-calibration
 
+ros2 run usb_cam usb_cam_node_exe --ros-args
+ros2 run usb_cam usb_cam_node_exe  video_device: "/dev/video1"
 
