@@ -73,10 +73,22 @@ grep -rnw '/path/to/somewhere/' -e 'pattern'
 
 #Camera
 echo $ROS_DISTRO
-sudo apt-get install ros-jazzy-usb-cam
-#Need to calibrate camera
+sudo apt-get install ros-$ROS_DISTRO-usb-cam
+
+-Need to calibrate camera, in the end I ran defaults as using headless (see below)
 sudo apt install ros-$ROS_DISTRO-camera-calibration
 
-ros2 run usb_cam usb_cam_node_exe --ros-args
-ros2 run usb_cam usb_cam_node_exe  video_device: "/dev/video1"
+- Creates node ~/usb_cam
+git clone https://github.com/ros-drivers/usb_cam.git
 
+- This can be modified later
+cp ~/usb_cam/config/camera_info.yaml ~/.ros/camera_info/default_camera.yaml
+
+- Find detail on camera I think it can be modified to change .yaml
+sudo v4l2-ctl --device=/dev/video0 -L
+
+- had to give access to camera
+sudo chmod 666 /dev/video0
+(sudo usermod -a -G video0 $USER    this didn't work)
+
+ros2 run usb_cam usb_cam_node_exe
