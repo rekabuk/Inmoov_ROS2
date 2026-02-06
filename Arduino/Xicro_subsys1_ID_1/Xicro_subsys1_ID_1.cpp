@@ -404,7 +404,7 @@ void Xicro::Spin_node(){
 
     if(_serial->available() > 0){
         _serial->readBytes(_datain,1);
-
+        _serial->write(_datain,1);
         
         switch (_state){
             case 0:
