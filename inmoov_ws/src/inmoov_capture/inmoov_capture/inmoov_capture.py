@@ -7,10 +7,10 @@ from std_msgs.msg import String
 class MinimalSubscriber(Node):
 
     def __init__(self):
-        super().__init__('minimal_subscriber')
+        super().__init__('pose_capture')
         self.subscription = self.create_subscription(
             String,
-            'shoulder_R',
+            'topic',
             self.listener_callback,
             10)
         self.subscription  # prevent unused variable warning
@@ -20,22 +20,16 @@ class MinimalSubscriber(Node):
 
 
 def main(args=None):
-    #global f
-
     rclpy.init(args=args)
 
-    minimal_subscriber = MinimalSubscriber()
+    pose_capture = MinimalSubscriber()
 
-   # f = open('workfile', 'w', encoding="utf-8")
-
-    rclpy.spin(minimal_subscriber)
-
-   # f.close(f)
+    rclpy.spin(pose_capture)
 
     # Destroy the node explicitly
     # (optional - otherwise it will be done automatically
     # when the garbage collector destroys the node object)
-    minimal_subscriber.destroy_node()
+    pose_capture.destroy_node()
     rclpy.shutdown()
 
 

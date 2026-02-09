@@ -4,7 +4,7 @@ package_name = 'inmoov_capture'
 
 setup(
     name=package_name,
-    version='0.0.0',
+    version='0.1.0',
     packages=find_packages(exclude=['test']),
     data_files=[
         ('share/ament_index/resource_index/packages',
@@ -15,8 +15,8 @@ setup(
     zip_safe=True,
     maintainer='andrew',
     maintainer_email='andrew@rekabuk.co.uk',
-    description='Capture Inmoov Poses',
-    license='Apache-2.0',
+    description='TODO: Package description',
+    license='TODO: License declaration',
     extras_require={
         'test': [
             'pytest',
@@ -24,6 +24,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'inmoov_capture = inmoov_capture.inmoov_capture:main'
         ],
     },
 )
