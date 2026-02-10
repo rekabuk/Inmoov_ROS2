@@ -39,3 +39,13 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
+
+
+
+
+
+    #https://robotics.stackexchange.com/questions/101471/dynamic-publishers-subscribers-and-callbacks
+
+
+#    https://www.google.com/search?client=firefox-b-d&hs=kIKp&sca_esv=85eca064802d3472&channel=entpr&q=ros2+subsrribe+to+an+array+of+topics&nfpr=1&sa=X&ved=2ahUKEwjz65TbiM-SAxWAVEEAHWmnM7UQvgUoAXoECBEQAg&biw=1604&bih=931&dpr=1

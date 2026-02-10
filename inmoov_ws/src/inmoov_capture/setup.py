@@ -21,10 +21,11 @@ setup(
         'test': [
             'pytest',
         ],
-    },
+    }, 
     entry_points={
         'console_scripts': [
-            'inmoov_capture = inmoov_capture.inmoov_capture:main'
+            'inmoov_capture = inmoov_capture.inmoov_capture:main',
+            'inmoov_capture_multi = inmoov_capture.inmoov_capture_multi:main',
         ],
     },
 )
