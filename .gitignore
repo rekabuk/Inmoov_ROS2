@@ -28,3 +28,5 @@
 inmoov_ws/build/
 inmoov_ws/install/
 inmoov_ws/log/
+inmoov_ws/tools/a.out
+inmoov_ws/src/*.pyc
