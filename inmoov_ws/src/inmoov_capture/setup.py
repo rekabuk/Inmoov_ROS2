@@ -26,6 +26,7 @@ setup(
         'console_scripts': [
             'inmoov_capture = inmoov_capture.inmoov_capture:main',
             'inmoov_capture_multi = inmoov_capture.inmoov_capture_multi:main',
+            'inmoov_capture_replay = inmoov_capture.inmoov_capture_replay:main',
         ],
     },
 )
