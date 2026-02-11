@@ -49,6 +49,7 @@ class pose_node(Node):
             self.person_callback,
             10
         )
+        self.get_logger().info('recognized_person started and ready.')
 
         # Subscribe to recognized_person topic
         self.create_subscription(
@@ -57,6 +58,7 @@ class pose_node(Node):
             self.pose_callback,
             10
         )
+        self.get_logger().info('pose_set started and ready.')
 
         # Publisher for text-to-speech
         self.tts_pub = self.create_publisher(String, '/jaw', 10)
@@ -77,7 +79,6 @@ class pose_node(Node):
         self._move_index = 0
         self._move_timer = None
 
-        self.get_logger().info('pose_node started and ready.')
 
 #   ------------------------------------------------------------
     def _load_greetings(self, filepath):
@@ -115,7 +116,7 @@ class pose_node(Node):
         """
         name = msg.data
         now = time.time()
-        self.get_logger().debug(f"Received /recognized_person: '{name}'")
+        self.get_logger().info(f"Received /recognized_person: '{name}'")
 
         # Rate limit: skip if interval not elapsed
         if now - self.last_behavior_time < self.BEHAVIOR_INTERVAL:
@@ -141,11 +142,11 @@ class pose_node(Node):
 #   ------------------------------------------------------------
     def pose_callback(self, msg: String):
         """
-        Handle incoming recognized_person messages, triggering behaviors.
+        Handle incoming pose set messages, triggering behaviors.
         """
         name = msg.data
         now = time.time()
-        self.get_logger().debug(f"Received /recognized_person: '{name}'")
+        self.get_logger().debug(f"Received /pose: '{name}'")
 
         # Rate limit: skip if interval not elapsed
         if now - self.last_behavior_time < self.BEHAVIOR_INTERVAL:
@@ -187,10 +188,11 @@ class pose_node(Node):
         """
         Initialize and start executing the gesture sequence loaded from YAML.
         """
+        self.get_logger().info("Movement started")
         if not self.movement_sequence:
             self.get_logger().warn("No movement sequence loaded, cannot start sequence")
             return
-        self.get_logger().debug("Starting movement sequence from movements_known.yaml")
+        self.get_logger().info("Starting movement sequence from movements_known.yaml")
         self._move_steps = self.movement_sequence.copy()
         self._move_index = 0
         self._run_next_step()
@@ -200,6 +202,7 @@ class pose_node(Node):
         """
         Execute current movement step: publish servo angles and schedule next via timer.
         """
+        self.get_logger().info("next step")
         if self._move_index >= len(self._move_steps):
             self.get_logger().debug("Completed all movement steps.")
             self._move_steps = []
@@ -212,16 +215,20 @@ class pose_node(Node):
         for topic, angle in servos.items():
             if topic not in self.servo_pubs:
                 self.servo_pubs[topic] = self.create_publisher(Int16, f"/{topic}", 10)
+                self.get_logger().info(f"New Topic: /{topic}")
             self.servo_pubs[topic].publish(Int16(data=int(angle)))
         delay = float(step.get('delay', 1.0))
-        self.get_logger().debug(
+        self.get_logger().info(
             f"Step {self._move_index+1}/{len(self._move_steps)}: " +
             ", ".join([f"/{t}={a}" for t, a in servos.items()]) +
             f" | next step in {delay:.2f}s"
         )
         self._move_index += 1
         # Schedule next step without blocking
+        self.get_logger().debug("new publisher /{topic}")
         self._move_timer = self.create_timer(delay, self._on_step_timer)
+
+        self.get_logger().debug("step done")
 
 #   ------------------------------------------------------------
     def _on_step_timer(self):
