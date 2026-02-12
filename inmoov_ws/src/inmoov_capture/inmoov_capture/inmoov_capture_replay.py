@@ -71,9 +71,10 @@ class pose_node(Node):
         self.greetings_unknown = self._load_greetings(os.path.join(pkg_dir, 'greetings_unknown.txt'))
         self.greetings_known = self._load_greetings(os.path.join(pkg_dir, 'greetings_known.txt'))
         self.movement_sequences = self._load_movement_sequence(os.path.join(pkg_dir, 'movements_known.yaml'))
+        '''
         #print(self.movement_sequences)
         self.data=self.movement_sequences
-        ''''
+        
         print("\n\nPoses")
         print(self.data )
         #self.sequence=self.movement_sequence=self.movement_sequences["pose"][0]
@@ -108,29 +109,23 @@ class pose_node(Node):
         self._move_timer = None
 
     def _select_pose(self, index):
-        print("\n\nPoses")
-        print(self.data )
-        #self.sequence=self.movement_sequence=self.movement_sequences["pose"][0]
-       # yaml.dump(self.movement_sequence, sys.stdout)
+        self.num_poses = len(self.movement_sequences)
 
-        print("\n\npose")
-        #print(self.data.get("pose"))
-        print(len(self.data))
+        #print("\n\nPoses")
+        #print(self.data )
+        #self.data=self.movement_sequences
 
-        self.data1=self.data[index]
-        print(self.data1)
+        #print("\n\npose")
+        #print(len(self.data))
 
-        #print("\n\n\rpose 1 values")
-        #self.data1.values()
+        self.movement_sequence=self.movement_sequences[index]["pose"]
         #print(self.data1)
-        #print(self.data1.values("pose"))
 
-        print("\n\npose values")
-        #print(self.data1.values())
-        print(self.data1["pose"])
+        #print("\n\npose values")
+        #print(self.data1["pose"])
 
-        self.movement_sequence = self.data1["pose"]
-  
+        #self.movement_sequence = self.data1["pose"]
+        #print(self.movement_sequence)
 
 #   ------------------------------------------------------------
     def _load_greetings(self, filepath):
@@ -255,7 +250,7 @@ class pose_node(Node):
         self.get_logger().info("Starting movement sequence from movements_known.yaml")
 
         # Get the pose we need
-        print(self.movement_sequence)
+    #    print(self.movement_sequence)
         #self.movement_sequence=self.movement_sequence[0].copy
 
         self._move_steps = self.movement_sequence.copy()
