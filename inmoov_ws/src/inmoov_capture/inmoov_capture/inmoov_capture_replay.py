@@ -15,6 +15,7 @@
 #  - /<servo_topic> (std_msgs/Int16) for any servo described in the YAML
 
 import os        # for locating package files
+import sys
 import time      # for rate-limiting behaviors
 import random    # for random greeting selection
 import yaml      # for parsing the YAML movement sequence file
@@ -69,7 +70,31 @@ class pose_node(Node):
         pkg_dir = os.path.dirname(__file__)
         self.greetings_unknown = self._load_greetings(os.path.join(pkg_dir, 'greetings_unknown.txt'))
         self.greetings_known = self._load_greetings(os.path.join(pkg_dir, 'greetings_known.txt'))
-        self.movement_sequence = self._load_movement_sequence(os.path.join(pkg_dir, 'movements_known.yaml'))
+        self.movement_sequences = self._load_movement_sequence(os.path.join(pkg_dir, 'movements_known.yaml'))
+        #print(self.movement_sequences)
+        self.data=self.movement_sequences
+        print("\n\nPoses")
+        print(self.data )
+        #self.sequence=self.movement_sequence=self.movement_sequences["pose"][0]
+       # yaml.dump(self.movement_sequence, sys.stdout)
+
+        print("\n\npose")
+        #print(self.data.get("pose"))
+        self.data1=self.data[1]
+        print(self.data1)
+
+        #print("\n\n\rpose 1 values")
+        #self.data1.values()
+        #print(self.data1)
+        #print(self.data1.values("pose"))
+
+        print("\n\npose values")
+        #print(self.data1.values())
+        print(self.data1["pose"])
+
+        self.movement_sequence = self.data1["pose"]
+
+
 
         # Timing control for behaviors
         self.last_behavior_time = 0.0
@@ -101,10 +126,14 @@ class pose_node(Node):
         """
         try:
             with open(filepath, 'r', encoding='utf-8') as f:
-                sequence = yaml.safe_load(f)
-                count = len(sequence) if sequence else 0
+                #ACB
+                #sequence = yaml.load_all(f)
+                sequences = yaml.safe_load(f)
+
+                count = len(sequences) if sequences else 0
                 self.get_logger().debug(f"Loaded {count} movement steps from {os.path.basename(filepath)}")
-                return sequence
+                print(count)
+                return sequences
         except Exception as e:
             self.get_logger().error(f"Failed to load movement sequence from {filepath}: {e}")
             return []
@@ -120,7 +149,7 @@ class pose_node(Node):
 
         # Rate limit: skip if interval not elapsed
         if now - self.last_behavior_time < self.BEHAVIOR_INTERVAL:
-            self.get_logger().debug("Behavior rate-locked, skipping")
+            self.get_logger().info("Behavior rate-locked, skipping")
             return
 
         if name == 'none':
@@ -188,12 +217,21 @@ class pose_node(Node):
         """
         Initialize and start executing the gesture sequence loaded from YAML.
         """
-        self.get_logger().info("Movement started")
+        self.get_logger().info("\n\nMovement started")
         if not self.movement_sequence:
             self.get_logger().warn("No movement sequence loaded, cannot start sequence")
             return
+        #TODO - need to check the the selected pose is not empty
         self.get_logger().info("Starting movement sequence from movements_known.yaml")
+
+        # Get the pose we need
+        print(self.movement_sequence)
+        #self.movement_sequence=self.movement_sequence[0].copy
+
         self._move_steps = self.movement_sequence.copy()
+
+        print("\n\n")
+        print(self._move_steps)
         self._move_index = 0
         self._run_next_step()
 

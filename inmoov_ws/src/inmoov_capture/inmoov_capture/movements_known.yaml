@@ -3,34 +3,98 @@
 # Movement sequence for the right arm after recognizing a person
 # Location: ~/inmoov_ws/src/inmoov_behaviors/inmoov_behaviors/movements_known.yaml
 
-# 1) Close all fingers except the thumb and raise the bicep to 75º, then wait 2 s
-- delay: 2.0
-  servos:
-    rotate_R: 0       # rest (thumb open)
-    bicep_R: 85      # minimum (closed)
-    nomoplate_R: 15     # minimum (closed)
-    shoulder_R: 10     # minimum (closed)
+  # 1) Close all fingers except the thumb and raise the bicep to 75º, then wait 2 s
+- pose:
+  - delay: 2.0
+    servos:
+      rotate_R: 0       # rest (thumb open)
+      bicep_R: 85      # minimum (closed)
+      nomoplate_R: 15     # minimum (closed)
+      shoulder_R: 10     # minimum (closed)
 
-# 2) Open all fingers to rest position (0) and wait 2 s
-- delay: 2.0
-  servos:
-    rotate_R: 0       # rest (thumb open)
-    bicep_R: 85      # minimum (closed)
-    nomoplate_R: 20     # minimum (closed)
-    shoulder_R: 36    # minimum (closed)
+  # 2) Open all fingers to rest position (0) and wait 2 s
+  - delay: 2.0
+    servos:
+      rotate_R: 0       # rest (thumb open)
+      bicep_R: 85      # minimum (closed)
+      nomoplate_R: 20     # minimum (closed)
+      shoulder_R: 36    # minimum (closed)
 
-# 3) Close all fingers (minimum angle) and move bicep to rest (0), then wait 3 s
-- delay: 3.0
-  servos:
-    rotate_R: 50       # rest (thumb open)
-    bicep_R: 90      # minimum (closed)
-    nomoplate_R: 25     # minimum (closed)
-    shoulder_R:  80   # minimum (closed)
+  # 3) Close all fingers (minimum angle) and move bicep to rest (0), then wait 3 s
+  - delay: 3.0
+    servos:
+      rotate_R: 50       # rest (thumb open)
+      bicep_R: 90      # minimum (closed)
+      nomoplate_R: 25     # minimum (closed)
+      shoulder_R:  80   # minimum (closed)
 
-# 4) Move fingers to rest position (0) and wait 1 s
-- delay: 1.0
-  servos:
-    rotate_R: 0       # rest (thumb open)
-    bicep_R: 67      # minimum (closed)
-    nomoplate_R: 50     # minimum (closed)
-    shoulder_R: 134     # minimum (closed)
+  # 4) Move fingers to rest position (0) and wait 1 s
+  - delay: 1.0
+    servos:
+      rotate_R: 0       # rest (thumb open)
+      bicep_R: 67      # minimum (closed)
+      nomoplate_R: 50     # minimum (closed)
+      shoulder_R: 134     # minimum (closed)
+- pose:
+  - delay: 2.0
+    servos:
+      rotate_R: 0       # rest (thumb open)
+      bicep_R: 85      # minimum (closed)
+      nomoplate_R: 15     # minimum (closed)
+      shoulder_R: 10     # minimum (closed)
+
+  # 2) Open all fingers to rest position (0) and wait 2 s
+  - delay: 2.0
+    servos:
+      rotate_R: 0       # rest (thumb open)
+      bicep_R: 85      # minimum (closed)
+      nomoplate_R: 20     # minimum (closed)
+      shoulder_R: 36    # minimum (closed)
+
+  # 3) Close all fingers (minimum angle) and move bicep to rest (0), then wait 3 s
+  - delay: 3.0
+    servos:
+      rotate_R: 50       # rest (thumb open)
+      bicep_R: 90      # minimum (closed)
+      nomoplate_R: 25     # minimum (closed)
+      shoulder_R:  80   # minimum (closed)
+
+  # 4) Move fingers to rest position (0) and wait 1 s
+  - delay: 1.0
+    servos:
+      rotate_R: 0       # rest (thumb open)
+      bicep_R: 67      # minimum (closed)
+      nomoplate_R: 50     # minimum (closed)
+      shoulder_R: 134     # minimum (closed)
+      
+- pose:
+  - delay: 2.0
+    servos:
+      rotate_R: 0       # rest (thumb open)
+      bicep_R: 85      # minimum (closed)
+      nomoplate_R: 15     # minimum (closed)
+      shoulder_R: 10     # minimum (closed)
+
+  # 2) Open all fingers to rest position (0) and wait 2 s
+  - delay: 2.0
+    servos:
+      rotate_R: 0       # rest (thumb open)
+      bicep_R: 85      # minimum (closed)
+      nomoplate_R: 20     # minimum (closed)
+      shoulder_R: 36    # minimum (closed)
+
+  # 3) Close all fingers (minimum angle) and move bicep to rest (0), then wait 3 s
+  - delay: 3.0
+    servos:
+      rotate_R: 50       # rest (thumb open)
+      bicep_R: 90      # minimum (closed)
+      nomoplate_R: 25     # minimum (closed)
+      shoulder_R:  80   # minimum (closed)
+
+  # 4) Move fingers to rest position (0) and wait 1 s
+  - delay: 1.0
+    servos:
+      rotate_R: 0       # rest (thumb open)
+      bicep_R: 67      # minimum (closed)
+      nomoplate_R: 50     # minimum (closed)
+      shoulder_R: 134     # minimum (closed)
