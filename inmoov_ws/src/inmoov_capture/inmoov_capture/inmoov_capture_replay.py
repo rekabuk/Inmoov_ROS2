@@ -73,6 +73,7 @@ class pose_node(Node):
         self.movement_sequences = self._load_movement_sequence(os.path.join(pkg_dir, 'movements_known.yaml'))
         #print(self.movement_sequences)
         self.data=self.movement_sequences
+        ''''
         print("\n\nPoses")
         print(self.data )
         #self.sequence=self.movement_sequence=self.movement_sequences["pose"][0]
@@ -80,7 +81,9 @@ class pose_node(Node):
 
         print("\n\npose")
         #print(self.data.get("pose"))
-        self.data1=self.data[1]
+        print(len(self.data))
+
+        self.data1=self.data[2]
         print(self.data1)
 
         #print("\n\n\rpose 1 values")
@@ -93,7 +96,7 @@ class pose_node(Node):
         print(self.data1["pose"])
 
         self.movement_sequence = self.data1["pose"]
-
+'''
 
 
         # Timing control for behaviors
@@ -104,6 +107,30 @@ class pose_node(Node):
         self._move_index = 0
         self._move_timer = None
 
+    def _select_pose(self, index):
+        print("\n\nPoses")
+        print(self.data )
+        #self.sequence=self.movement_sequence=self.movement_sequences["pose"][0]
+       # yaml.dump(self.movement_sequence, sys.stdout)
+
+        print("\n\npose")
+        #print(self.data.get("pose"))
+        print(len(self.data))
+
+        self.data1=self.data[index]
+        print(self.data1)
+
+        #print("\n\n\rpose 1 values")
+        #self.data1.values()
+        #print(self.data1)
+        #print(self.data1.values("pose"))
+
+        print("\n\npose values")
+        #print(self.data1.values())
+        print(self.data1["pose"])
+
+        self.movement_sequence = self.data1["pose"]
+  
 
 #   ------------------------------------------------------------
     def _load_greetings(self, filepath):
@@ -143,6 +170,7 @@ class pose_node(Node):
         """
         Handle incoming recognized_person messages, triggering behaviors.
         """
+        self._select_pose(1)
         name = msg.data
         now = time.time()
         self.get_logger().info(f"Received /recognized_person: '{name}'")
@@ -173,6 +201,8 @@ class pose_node(Node):
         """
         Handle incoming pose set messages, triggering behaviors.
         """
+        self._select_pose(1)
+
         name = msg.data
         now = time.time()
         self.get_logger().debug(f"Received /pose: '{name}'")
