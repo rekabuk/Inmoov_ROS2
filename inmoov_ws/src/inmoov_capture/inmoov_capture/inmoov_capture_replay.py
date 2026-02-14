@@ -80,9 +80,22 @@ class pose_node(Node):
         self._move_index = 0
         self._move_timer = None
 
+#   ------------------------------------------------------------
     def _select_pose(self, index):
         self.num_poses = len(self.movement_sequences)
-        self.movement_sequence=self.movement_sequences[index]["pose"]
+        print(f"\n\nsequences: {self.num_poses}")
+        print(f"movement_sequences: {self.movement_sequences}")   
+
+        self.movement_sequence=self.movement_sequences[index]["pose"]["steps"]
+        print(f"\n\nself.movement_sequence: {self.movement_sequence}")  
+
+      #  self.movement_sequence=self.single_movement_sequence["steps"]
+        #print(self.movement_sequence)   
+
+       #self.num_poses = len(self.movement_sequences)
+        #self.movement_sequence=self.movement_sequences[index]["pose"]
+
+
 
 #   ------------------------------------------------------------
     def _load_greetings(self, filepath):
@@ -111,7 +124,8 @@ class pose_node(Node):
 
                 count = len(sequences) if sequences else 0
                 self.get_logger().debug(f"Loaded {count} movement steps from {os.path.basename(filepath)}")
-                print(count)
+                #print(count)
+                #print(sequences)
                 return sequences
         except Exception as e:
             self.get_logger().error(f"Failed to load movement sequence from {filepath}: {e}")
